@@ -15,4 +15,4 @@ const meterArray = meters.split( '\r\n' ).map( meter => {
   }
 })
 
-fs.writeFile( 'meterData2.JSON', JSON.stringify(meterArray), ()=>{} )
+fs.writeFile( 'meterData2.js', 'const meters = ' + JSON.stringify(meterArray), ()=>{} )

@@ -7,7 +7,7 @@
 
     <div id="googleMap" style="width:100%;height:400px;"></div>
     <script src="meter.js"></script>
-    <script src="meterData.js"></script>
+    <script src="meterData2.js"></script>
 
     <script>
 
@@ -19,29 +19,27 @@
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         //
-        // var marker = new google.maps.Marker({
-        //     position: {
-        //       lat:  37.78409100,
-        //       lng: -122.23709600
-        //     },
-        //     map: map,
-        //     title: 'Hello World!'
-        // })
+        var marker = new google.maps.Marker({
+            position: {
+              lat:  37.78409100,
+              lng: -122.23709600
+            },
+            map: map,
+            title: 'Hello World!'
+        })
 
-        var sampleData = meter.result.records.map(record => record.lonlatconc.split(', ').map(string => JSON.parse(string)) )
-
-        // console.log('asdf', x)
-
+        const sampleData = meter.result.records.map(record => record.lonlatconc.split(', ').map(string => JSON.parse(string)) )
 
         const smallSetOfMeters = meters.slice(0, 100)
 
         console.log(smallSetOfMeters)
 
-        smallSetOfMeters.forEach( singleArray =>
+        sampleData.forEach( subarray =>
+
           new google.maps.Marker({
               position: {
-                lat: parseInt(singleArray.lat),
-                lng: parseInt(singleArray.lng)
+                lat:  subarray[1],
+                lng: subarray[0]
               },
               map: map,
               title: 'two'
@@ -49,12 +47,22 @@
 
         )
 
+
+        // smallSetOfMeters.forEach( meter_singular =>
+        //   {
+        //     console.log('latdfxb', meter_singular.lng, 'lng', meter_singular.lat, meter_singular.id)
+        //     return new google.maps.Marker({
+        //         position: {
+        //           lat: parseInt(meter_singular.lng),
+        //           lng: parseInt(meter_singular.lat)
+        //         },
+        //         map: map,
+        //         title: meter_singular.id
+        //     })
+        //
+        // })
+
       }
-
-      console.log('the meter data:', meters)
-
-      console.log('hello')
-
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
