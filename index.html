@@ -19,55 +19,10 @@
           zoom: 12,
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        //
-        // var marker = new google.maps.Marker({
-        //     position: {
-        //       lat:  37.78409,
-        //       lng: -122.2370
-        //     },
-        //     map: map,
-        //     title: 'Hello World!'
-        // })
 
         const sampleData = meter.result.records.map(record => record.lonlatconc.split(', ').map(string => JSON.parse(string)) )
 
         const smallSetOfMeters = meters.slice(0)
-
-        // console.log(smallSetOfMeters)
-
-
-
-        //
-        // sampleData.forEach( subarray => {
-        //
-        //   console.log('why is this -->', {
-        //     lat:  subarray[1],
-        //     lng: subarray[0]
-        //   })
-        //
-        //   return new google.maps.Marker({
-        //         position: {
-        //           lat:  subarray[1],
-        //           lng: subarray[0]
-        //         },
-        //         map: map,
-        //         title: 'two'
-        //     })
-        //
-        // }
-        //
-        // )
-
-        //
-        // new google.maps.Marker({
-        //     position: {
-        //       lat:  37.78419,
-        //       lng: -122.2370
-        //     },
-        //     map: map,
-        //     title: 'Hello World!'
-        // })
-
 
         smallSetOfMeters.filter(meter => meter.notFound.length === 0).forEach( meterObject => {
 
@@ -87,40 +42,9 @@
               title: 'Hello World!'
           })
 
-            // console.log('meterObject:', meterObject)
-
-            // console.log('different than this -->', {
-            //   lat: +meterObject.lng,
-            //   lng: +meterObject.lat
-            // })
-
-            // return new google.maps.Marker({
-            //     position: {
-            //       lng:  +meterObject.lng,
-            //       lat: +meterObject.lat
-            //     },
-            //     map: map,
-            //     title: 'two'
-            // })
-
           }
 
         )
-
-
-        // smallSetOfMeters.forEach( meter_singular =>
-        //   {
-        //     console.log('latdfxb', meter_singular.lng, 'lng', meter_singular.lat, meter_singular.id)
-        //     return new google.maps.Marker({
-        //         position: {
-        //           lat: parseInt(meter_singular.lng),
-        //           lng: parseInt(meter_singular.lat)
-        //         },
-        //         map: map,
-        //         title: meter_singular.id
-        //     })
-        //
-        // })
 
       }
     </script>
