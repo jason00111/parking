@@ -7,6 +7,7 @@
 
     <div id="googleMap" style="width:100%;height:400px;"></div>
     <script src="meter.js"></script>
+    <script src="jquery.js"></script>
 
     <script>
         function myMap() {
@@ -42,42 +43,28 @@
                   map: map,
                   title: 'two'
               })
-
-
             )
-
-
-
-
-
-
-
       }
 
+      console.log($)
+      //
+      // $.ajax({
+      //   method: 'GET',
+      //   mode: 'cors',
+      //   headers: '',
+      //   url: 'http://data.openoakland.org/api/action/datastore/search.json?resource_id=abcb59e0-2d26-4180-a436-609a6044ef27',
+      //   contentType: 'application/json',
+      //   error: (err) => {
+      //     console.error('update ajax failure', err)
+      //   },
+      //   datatype: 'application/json'
+      // })
+      // .then()  // NOTE: tell yasseen
+
+      $.get('http://data.openoakland.org/api/action/datastore/search.json?resource_id=abcb59e0-2d26-4180-a436-609a6044ef27')
+        .done(console.log)
 
 
-
-        // alert(meter)
-
-
-
-        // function initMap() {
-        //     var myLatLng = {
-        //         lat: 122.237096,
-        //         lng: 37.784091
-        //     };
-        //
-        //     var map = new google.maps.Map(document.getElementById('map'), {
-        //         zoom: 4,
-        //         center: myLatLng
-        //     });
-        //
-        //     var marker = new google.maps.Marker({
-        //         position: myLatLng,
-        //         map: map,
-        //         title: 'Hello World!'
-        //     });
-        // }
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
