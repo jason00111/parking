@@ -5,7 +5,7 @@ function myMap() {
     // center:new google.maps.LatLng(2112625.9794610441, 6059698.9833894819),
     fullscreenControl: true,
     center: new google.maps.LatLng(37.78409100, -122.23709600),
-    zoom: 12,
+    zoom: 15,
   };
   var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
@@ -15,16 +15,11 @@ function myMap() {
 
   smallSetOfMeters.filter(meter => meter.notFound.length === 0).forEach( meterObject => {
 
-    let lng_something = +meterObject.lng
-    let lat_something = +meterObject.lat
-
-    let lat0 = 37.78429, lng0 = -122.2370
-
     new google.maps.Marker({
         icon: meterObject.notFound.length === 0 ? 'meterIcon.png' : 'meterNotFoundIcon.png',
         position: {
-          lat:  lng_something,
-          lng: lat_something
+          lat:  +meterObject.lng,
+          lng: +meterObject.lat
         },
         map: map,
         title: 'Hello World!'
@@ -34,17 +29,36 @@ function myMap() {
   let otherNotMovingCenter = true
   let otherNotZooming = true
 
+  let zoomFactor = (2 ** (17 - map.getZoom())) / 100
+
+  // 16 => 0.02
+  // 15 => 0.04
+  // 14 => 0.08
+  // (2 ** (17 - 13)) / 100
+
+
+  function offset (centerObject) {
+    centerObject.lat = centerObject.lat + zoomFactor * gridPosition.y
+    centerObject.lng = centerObject.lng - zoomFactor * gridPosition.x
+
+    return centerObject
+  }
+
   map.addListener('center_changed', function() {
     if (otherNotMovingCenter) {
-      socket.emit('center_changed', JSON.stringify(map.getCenter().toJSON()))
-      log("socket.emit('center_changed',", JSON.stringify(map.getCenter().toJSON()), ")")
+      socket.emit('center_changed', JSON.stringify(offset(map.getCenter().toJSON())))
+      log('sending center_changed message to server')
     }
   })
 
   map.addListener('zoom_changed', function() {
+    log('zoom:', map.getZoom())
+
+    zoomFactor = (2 ** (17 - map.getZoom())) / 100
+
     if (otherNotZooming) {
       socket.emit('zoom_changed', map.getZoom())
-      log("socket.emit('zoom_changed',", map.getZoom(), ")")
+      log('sending zoom_changed message to server')
     }
   })
 
@@ -54,7 +68,10 @@ function myMap() {
     if (centerData.senderId !== socket.id){
       otherNotMovingCenter = false
 
-      map.setCenter({lat: centerData.lat, lng: centerData.lng})
+      map.setCenter({
+        lat: centerData.lat - zoomFactor * gridPosition.y,
+        lng: centerData.lng + zoomFactor * gridPosition.x
+      })
 
       otherNotMovingCenter = true
 
