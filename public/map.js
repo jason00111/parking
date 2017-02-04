@@ -32,12 +32,19 @@ function myMap() {
   })
 
   let otherNotMovingCenter = true
+  let otherNotZooming = true
 
   map.addListener('center_changed', function() {
-
     if (otherNotMovingCenter) {
       socket.emit('center_changed', JSON.stringify(map.getCenter().toJSON()))
       log("socket.emit('center_changed',", JSON.stringify(map.getCenter().toJSON()), ")")
+    }
+  })
+
+  map.addListener('zoom_changed', function() {
+    if (otherNotZooming) {
+      socket.emit('zoom_changed', map.getZoom())
+      log("socket.emit('zoom_changed',", map.getZoom(), ")")
     }
   })
 
@@ -52,6 +59,20 @@ function myMap() {
       otherNotMovingCenter = true
 
       log('responding to move on other client')
+    }
+  })
+
+  socket.on('zoom_changed', function(zoomData) {
+    log('received zoom_changed from server', zoomData)
+
+    if (zoomData.senderId !== socket.id){
+      otherNotZooming = false
+
+      map.setZoom(zoomData.zoom)
+
+      otherNotZooming = true
+
+      log('responding to zoom on other client')
     }
   })
 

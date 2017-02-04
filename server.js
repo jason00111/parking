@@ -29,8 +29,6 @@ io.on('connection', function(socket) {
   socket.on('center_changed', center => {
     log('received center_changed message from client', center)
 
-    console.log('typeof center:', typeof center)
-    console.log('center.lat:', center.lat)
     center = JSON.parse(center)
 
     centerChangeData = {
@@ -39,9 +37,20 @@ io.on('connection', function(socket) {
       senderId: socket.id
     }
 
-    console.log('centerChangeData:', centerChangeData)
-
     log('boradcasting center_changed to clients')
     io.emit('center_changed', centerChangeData)
   })
+
+  socket.on('zoom_changed', zoom => {
+    log('received zoom_changed message from client', zoom)
+
+    zoomChangeData = {
+      zoom: zoom,
+      senderId: socket.id
+    }
+
+    log('boradcasting zoom_changed to clients')
+    io.emit('zoom_changed', zoomChangeData)
+  })
+
 })
