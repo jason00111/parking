@@ -72,12 +72,12 @@
 
           let lng_something = +meterObject.lng
           let lat_something = +meterObject.lat
-          // let lat = +meterObject.lat
+
 
           let lat0 = 37.78429, lng0 = -122.2370
 
           new google.maps.Marker({
-              icon: 'meterIcon.png',
+              icon: meterObject.notFound.length === 0 ? 'meterIcon.png' : 'meterNotFoundIcon.png',
               position: {
                 lat:  lng_something,
                 lng: lat_something
