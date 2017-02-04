@@ -70,8 +70,6 @@
 
         smallSetOfMeters.forEach( meterObject => {
 
-          console.log(+meterObject.lng)
-
           let lng_something = +meterObject.lng
           let lat_something = +meterObject.lat
           // let lat = +meterObject.lat
@@ -79,6 +77,7 @@
           let lat0 = 37.78429, lng0 = -122.2370
 
           new google.maps.Marker({
+              icon: 'meterIcon.png',
               position: {
                 lat:  lng_something,
                 lng: lat_something
@@ -94,14 +93,14 @@
             //   lng: +meterObject.lat
             // })
 
-            return new google.maps.Marker({
-                position: {
-                  lng:  +meterObject.lng,
-                  lat: +meterObject.lat
-                },
-                map: map,
-                title: 'two'
-            })
+            // return new google.maps.Marker({
+            //     position: {
+            //       lng:  +meterObject.lng,
+            //       lat: +meterObject.lat
+            //     },
+            //     map: map,
+            //     title: 'two'
+            // })
 
           }
 
