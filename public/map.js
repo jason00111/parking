@@ -31,12 +31,6 @@ function myMap() {
 
   let zoomFactor = (2 ** (17 - map.getZoom())) / 100
 
-  // 16 => 0.02
-  // 15 => 0.04
-  // 14 => 0.08
-  // (2 ** (17 - 13)) / 100
-
-
   function offset (centerObject) {
     centerObject.lat = centerObject.lat + zoomFactor * gridPosition.y
     centerObject.lng = centerObject.lng - zoomFactor * gridPosition.x
