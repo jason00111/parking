@@ -1,0 +1,24 @@
+{
+  "name": "parking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "meter.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jason00111/parking.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jason00111/parking/issues"
+  },
+  "homepage": "https://github.com/jason00111/parking#readme"
+}
