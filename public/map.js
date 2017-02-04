@@ -30,10 +30,9 @@ function myMap() {
   let otherNotZooming = true
 
   let zoomFactor = (2 ** (17 - map.getZoom())) / 50
-  // let zoomFactor = (2 ** (17 - map.getZoom())) / 100
 
   function offset (centerObject) {
-    centerObject.lat = centerObject.lat + zoomFactor * gridPosition.y
+    centerObject.lat = centerObject.lat + (zoomFactor * 0.9) * gridPosition.y
     centerObject.lng = centerObject.lng - (zoomFactor * 2) * gridPosition.x
 
     return centerObject
@@ -67,7 +66,7 @@ function myMap() {
       otherNotMovingCenter = false
 
       map.setCenter({
-        lat: centerData.lat - zoomFactor * gridPosition.y,
+        lat: centerData.lat - (zoomFactor * 0.9) * gridPosition.y,
         lng: centerData.lng + (zoomFactor * 2) * gridPosition.x
       })
 
