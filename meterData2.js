@@ -1,13 +1,14 @@
 const meters = [
+    // {
+    //     "x": "X",
+    //     "y": "Y",
+    //     "id": "METER_ID",
+    //     "street": "STREET_ADD",
+    //     "notFound": "STATUS",
+    //     "lat": "LONGITUDE",
+    //     "lng": "LATITUDE"
+    // },
     {
-        "x": "X",
-        "y": "Y",
-        "id": "METER_ID",
-        "street": "STREET_ADD",
-        "notFound": "STATUS",
-        "lat": "LONGITUDE",
-        "lng": "LATITUDE"
-    }, {
         "x": "6059564.6060335636",
         "y": "2112673.9974096268",
         "id": "15602",
@@ -35855,7 +35856,5 @@ const meters = [
         "notFound": "",
         "lat": "-122.25546910",
         "lng": "37.82383269"
-    }, {
-        "x": ""
     }
 ]
