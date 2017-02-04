@@ -14,19 +14,20 @@
       function myMap() {
         var mapProp = {
           // center:new google.maps.LatLng(2112625.9794610441, 6059698.9833894819),
+          fullscreenControl: true,
           center: new google.maps.LatLng(37.78409100, -122.23709600),
           zoom: 12,
         };
         var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
         //
-        var marker = new google.maps.Marker({
-            position: {
-              lat:  37.78409,
-              lng: -122.2370
-            },
-            map: map,
-            title: 'Hello World!'
-        })
+        // var marker = new google.maps.Marker({
+        //     position: {
+        //       lat:  37.78409,
+        //       lng: -122.2370
+        //     },
+        //     map: map,
+        //     title: 'Hello World!'
+        // })
 
         const sampleData = meter.result.records.map(record => record.lonlatconc.split(', ').map(string => JSON.parse(string)) )
 
@@ -57,18 +58,18 @@
         //
         // )
 
+        //
+        // new google.maps.Marker({
+        //     position: {
+        //       lat:  37.78419,
+        //       lng: -122.2370
+        //     },
+        //     map: map,
+        //     title: 'Hello World!'
+        // })
 
-        new google.maps.Marker({
-            position: {
-              lat:  37.78419,
-              lng: -122.2370
-            },
-            map: map,
-            title: 'Hello World!'
-        })
 
-
-        smallSetOfMeters.forEach( meterObject => {
+        smallSetOfMeters.filter(meter => meter.notFound.length === 0).forEach( meterObject => {
 
           let lng_something = +meterObject.lng
           let lat_something = +meterObject.lat
