@@ -29,7 +29,7 @@ function myMap() {
   let otherNotMovingCenter = true
   let otherNotZooming = true
 
-  let zoomFactor = (2 ** (17 - map.getZoom())) / 50
+  let zoomFactor = (2 ** (17 - map.getZoom())) / 85
 
   function offset (centerObject) {
     centerObject.lat = centerObject.lat + (zoomFactor * 0.9) * gridPosition.y
@@ -48,7 +48,7 @@ function myMap() {
   map.addListener('zoom_changed', function() {
     log('zoom:', map.getZoom())
 
-    zoomFactor = (2 ** (17 - map.getZoom())) / 90
+    zoomFactor = (2 ** (17 - map.getZoom())) / 85
 
     if (otherNotZooming) {
       socket.emit('zoom_changed', map.getZoom())
