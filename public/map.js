@@ -22,7 +22,7 @@ function myMap() {
           lng: +meterObject.lat
         },
         map: map,
-        title: 'Hello World!'
+        title: 'Hello Yaseen!'
     })
   })
 
